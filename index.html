@@ -150,22 +150,8 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Pre-trained conditional diffusion models have demonstrated
-impressive potential in the editing of real-world images. Although these methods achieve reasonable editing effects, they
-still suffer from inconsistencies for facial images in aspects
-of appearance, expression, and temporal coherence. These issues arise from the independent editing of single images and
-the inherent loss of temporal patterns of the editing process.
-In this paper, we introduce AvatarControl, a novel framework
-for editing and generating high-fidelity talking head avatars.
-Instead of performing independent image editing, AvatarControl leverages the correspondence represented by optical flow
-across views and frames to boost the editing consistency.
-Specifically, given a set of talking avatar images rendered by a
-pretrained 3D Gaussian Splatting model, we propose a multi-view consistency module to select reference views based on
-optical flow. These selected frames are then utilized to provide complementary view-consistency for the target image,
-unifying the edited appearance. Further, we propose a temporal consistency module, which applies the optical flow and
-depth map changes of source images to the diffusion process,
-fine-tuning the edited talking head images for better temporal
-stability. Extensive experiments demonstrate that AvatarControl outperforms state-of-the-art methods in terms of appearance, expression, and temporal consistency in edited avatars.
+            Pre-trained conditional diffusion models have demonstrated remarkable potential in image editing. However, they often face challenges with temporal consistency, particularly in the talking head domain, where continuous changes in facial expressions intensify the level of difficulty. These issues stem from the independent editing of individual images and the inherent loss of temporal continuity during the editing process. In this paper, we introduce Follow Your Motion (FYM), a generic framework for maintaining temporal consistency in portrait editing.
+Specifically, given portrait images rendered by a pre-trained 3D Gaussian Splatting model, we first develop a diffusion model that intuitively and inherently learns motion trajectory changes at different scales and pixel coordinates, from the first frame to each subsequent frame. This approach ensures that temporally inconsistent edited avatars inherit the motion information from the rendered avatars. Secondly, to maintain fine-grained expression temporal consistency in talking head editing, we propose a dynamic re-weighted attention mechanism. This mechanism assigns higher weight coefficients to landmark points in space and dynamically updates these weights based on landmark loss, achieving more consistent and refined facial expressions. Extensive experiments demonstrate that our method outperforms existing approaches in terms of temporal consistency and can be used to optimize and compensate for temporally inconsistent outputs in a range of applications, such as text-driven editing, relighting, and various other applications.
           </p>
         </div>
       </div>
@@ -184,12 +170,7 @@ stability. Extensive experiments demonstrate that AvatarControl outperforms stat
           <img src="./pics/pipeline.png" alt="pipeline" style="max-width: 100%; height: auto;">
         </div>
         <h2 class="subtitle has-text-justified">
-          AvatarControl begins with the highly effective 3DGS model, which provides source render images and
-depths (stage 1). To ensure multi-view consistency, we integrate the depths and landmarks extracted using the pre-trained
-EMOCA with ControlNet, thereby maintaining both geometric and expression consistency. We then utilize optical flow changes
-from the source render images to identify valuable reference views for the current editing frame, applying an attention alignment
-strategy to further improve multi-view consistency (stage 2). Finally, we use the optical flow changes and depth variations from
-the source render images to develop a temporally consistent diffusion model, which generates the final edited results (stage 3).
+          FYM begins with an efficient 3DGS model to render temporally consistent portraits. Next, we develop a diffusion model that intuitively and inherently learns the motion trajectories changes at different scales and pixel coordinates from the original video frames. Finally, we propose a dynamic re-weighted attention mechanism. This mechanism assigns higher weight coefficients to landmark coordinates in space and dynamically updates these weights based on landmark loss, achieving more consistent and refined facial expressions.
         </h2>
       </div>
     </div>
