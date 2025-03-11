@@ -194,34 +194,64 @@ Specifically, given portrait images rendered by a pre-trained 3D Gaussian Splatt
   </div> 
 </section>
 
-  <section class="section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <h2 class="title is-3">The Editing Results of Our Method</h2>
         <h3 class="subtitle is-4">InstructPix2Pix+FYM</h3>
         <h3 class="subtitle is-5">Prompt: Change him into Lego style</h3>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-comp_avatar_1">
-            <video poster="" id="comp_avatar_1" autoplay controls muted loop playsinline height="100%">
-              <source src="./pics/demo1r.mp4"
-                      type="video/mp4">
+        
+        <!-- 视频容器，使用 Flexbox 布局 -->
+        <div class="video-container">
+          <div class="video-item">
+            <video poster="" id="comp_avatar_1" autoplay controls muted loop playsinline>
+              <source src="./pics/demo1r.mp4" type="video/mp4">
             </video>
             <p class="video-description">original</p>
           </div>
-          <div class="item item-comp_avatar_2">
-            <video poster="" id="comp_avatar_2" autoplay controls muted loop playsinline height="100%">
-              <source src="./pics/demo1e.mp4"
-                      type="video/mp4">
+          
+          <div class="video-item">
+            <video poster="" id="comp_avatar_2" autoplay controls muted loop playsinline>
+              <source src="./pics/demo1e.mp4" type="video/mp4">
             </video>
             <p class="video-description">edited results</p>
           </div>
-          
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* 视频容器使用 Flexbox 布局 */
+  .video-container {
+    display: flex;
+    justify-content: center; /* 居中显示视频 */
+    gap: 20px; /* 视频之间的间距 */
+    flex-wrap: wrap; /* 屏幕空间不足时换行 */
+  }
+
+  /* 单个视频项的样式 */
+  .video-item {
+    width: 45%; /* 设置每个视频的宽度（可根据需求调整） */
+    text-align: center; /* 使描述文本居中 */
+  }
+
+  /* 控制视频的尺寸 */
+  video {
+    width: 100%; /* 使视频自适应容器宽度 */
+    height: auto; /* 自动调整高度，保持视频比例 */
+  }
+
+  /* 视频描述样式 */
+  .video-description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+
 
 <!-- Statcounter tracking code -->
   
